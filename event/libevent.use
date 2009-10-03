@@ -1,0 +1,5 @@
+Name: libevent
+Includes: event.h
+Libs: -levent
+
+
