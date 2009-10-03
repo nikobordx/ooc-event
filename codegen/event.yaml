@@ -1,0 +1,80 @@
+Files:
+    - event.json
+
+Classes:
+    ErrorCB:
+        Tag: everrorcb
+    BufferCB:
+        Tag: evbuffercb
+    Event:
+        Tag: POINTER(STRUCT(event))
+        Methods:
+            - !ArgumentTag
+              tag: POINTER(STRUCT(event))
+              pattern: event_(.*)
+              repl: '\1'
+    BufferEvent:
+        Tag: POINTER(STRUCT(bufferevent))
+        Methods:
+            - !ArgumentTag
+              tag: POINTER(STRUCT(bufferevent))
+              pattern: bufferevent_(.*)
+              repl: '\1'
+        StaticMethods:
+            - !Name
+              pattern: bufferevent_(new)$
+              repl: '\1'
+
+    Buffer:
+        Tag: POINTER(STRUCT(evbuffer))
+        Methods:
+            - !Name
+              pattern: evtag_(.*)
+              repl: '\1'        
+            - !ArgumentTag
+              tag: POINTER(STRUCT(evbuffer))
+              pattern: evbuffer_(.*)
+              repl: '\1'
+        StaticMethods:
+            - !Name
+              pattern: evbuffer_(new)$
+              repl: '\1'
+    Base:
+        Tag: POINTER(STRUCT(event_base))
+        Methods:
+            - !Name
+              pattern: event_(reinit)
+              repl: '\1'
+            - !Name
+              pattern: event_base_loopexit
+              repl: 'loopExit'
+            - !Name
+              pattern: event_base_loopbreak
+              repl: 'loopBreak'
+            - !ArgumentTag
+              tag: POINTER(STRUCT(event_base))
+              pattern: event_base_(.*)
+              repl: '\1'
+        StaticMethods:
+            - !Name
+              pattern: event_base_(new)
+              repl: '\1'
+
+Functions:
+    - !Name
+      pattern: event_(init|dispatch|loop|once|get_version|get_method|set_log_callback|priority_init)$
+      repl: '\1'
+    - !Name
+      pattern: event_loopexit
+      repl: 'loopExit'
+    - !Name
+      pattern: event_loopbreak
+      repl: 'loopBreak'
+    - !Name
+      pattern: evutil_(.*)
+      repl: '\1'
+    - !Name
+      pattern: (.*)
+      repl: '\1'
+
+
