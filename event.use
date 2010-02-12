@@ -1,5 +1,4 @@
 Name: libevent
-Includes: event.h
+Version: 0.1
 Libs: -levent
-
-
+SourcePath: .

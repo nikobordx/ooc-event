@@ -1,4 +1,6 @@
-use event/libevent
+use event
+
+include event | (__USE_BSD)
 
 BufferCB: cover from evbuffercb
 
